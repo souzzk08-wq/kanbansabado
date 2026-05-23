@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 10000;
 const SECRET_KEY = 'super-secret-key-for-jwt-do-not-use-in-prod';
 
 app.use(cors());
@@ -265,6 +265,6 @@ app.patch('/api/tasks/:id/complete', authenticateToken, (req, res) => {
   res.json(tasks[taskIndex]);
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
 });
